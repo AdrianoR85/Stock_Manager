@@ -14,6 +14,7 @@ export default function Login(){
     try{
       const response = await axios.post("http://127.0.0.1:5000/user/login", {username, password});
       if (response.status === 200) {
+        localStorage.setItem("authToken", response.data.token);
         navigate("/user");
       }
     }

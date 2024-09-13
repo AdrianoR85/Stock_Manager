@@ -3,15 +3,18 @@ from server.app import db
 from sqlalchemy.exc import SQLAlchemyError
 from ..models.models import Product
 from ..util.validation import empty_data
+from flask_jwt_extended import jwt_required
 
 product_bp = Blueprint('product', __name__, url_prefix='/products')
 
 @product_bp.route('/', methods=['GET'])
+@jwt_required()
 def get_products():
   product_list = db.session.query(Product).all()
   return jsonify([product.to_dict() for product in product_list])
 
 @product_bp.route('/register', methods=['POST'])
+@jwt_required()
 def add_product():
   name = request.form.get('name')
   quantity = request.form.get('quantity')
@@ -48,6 +51,7 @@ def add_product():
     
 
 @product_bp.route('/product/<id>', methods=['GET'])
+@jwt_required()
 def get_product_by_id(id):
   product = Product.query.get_or_404(id)
   return jsonify({
@@ -59,6 +63,7 @@ def get_product_by_id(id):
   
 
 @product_bp.route('/product/<id>', methods=['PUT'])
+@jwt_required()
 def update_product(id):
   data = request.get_json()
   product = Product.query.get_or_404(id)
@@ -91,6 +96,7 @@ def update_product(id):
   
 
 @product_bp.route('/product/<id>', methods=['DELETE'])
+@jwt_required()
 def delete_product(id):
   product = Product.query.get_or_404(id)
   try:
