@@ -2,3 +2,13 @@
 __pycache__
 .vscode
 .env
+
+# Node modules  
+node_modules/  
+
+# Build outputs  
+dist/  
+
+# Logs  
+logs/  
+*.log  

@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from src.app import db
+from server.app import db
 from sqlalchemy.exc import SQLAlchemyError
 from ..models.models import Product
 from ..util.validation import empty_data
