@@ -1,43 +1,45 @@
-## Project Status
+## Status do Projeto
 
-🚧 **This project is under construction** 🚧
+🚧 **Este projeto está em construção** 🚧
 
-# Inventory Management System
+# Sistema de Gestão de Estoque
 
-## Project Description
-This system allows a user to log in to access, manage, and control stock products. After logging in, the user can:
-- Register a new product
-- Edit an existing product
-- Delete a product
-- Search for a product
+## Descrição do Projeto
+Este sistema permite que um usuário faça login para acessar, gerenciar e controlar os produtos de estoque. Após o login, o usuário pode:
+- Cadastrar um novo produto
+- Editar um produto existente
+- Deletar um produto
+- Procurar um produto
 
-### Technologies Used
+### Tecnologias Utilizadas
 #### Backend
-- **Python**: Programming language used for the backend development.
-- **Flask**: Web framework used to create the RESTful API.
-- **SQLAlchemy**: ORM used to map database data to Python classes.
-- **MySQL**: Database used to store product and user information.
-- **JWT (JSON Web Token)**: Used for user authentication and authorization.
+- **Python**: Linguagem de programação utilizada no desenvolvimento do backend.
+- **Flask**: Framework web utilizado para criar a API RESTful.
+- **SQLAlchemy**: ORM utilizado para mapear os dados do banco de dados para classes Python.
+- **MySQL**: Banco de dados utilizado para armazenar os produtos e informações dos usuários.
+- **JWT (JSON Web Token)**: Utilizado para autenticação e autorização de usuários.
 
 #### Frontend
-- **React**: JavaScript library for creating dynamic user interfaces.
-- **Bootstrap**: CSS framework for responsive design and styling.
-- **React Router**: Library for managing navigation between application pages.
+- **React**: Biblioteca JavaScript para criação de interfaces dinâmicas.
+- **Bootstrap**: Framework CSS para estilização e criação de uma interface responsiva.
+- **React Router**: Biblioteca para gerenciar a navegação entre as páginas da aplicação.
 
 ---
 
-## Features
-- **JWT Authentication**: The system generates an access token after login, which is verified in every request to protected routes.
-- **Product CRUD**: Users can create, view, edit, and delete products in the stock.
-- **Responsive Interface**: Using Bootstrap, the interface adapts to different screen sizes.
+## Funcionalidades
+- **Autenticação JWT**: O sistema gera um token de acesso após o login, que é verificado em cada requisição para as rotas protegidas.
+- **CRUD de Produtos**: O usuário pode cadastrar, visualizar, editar e deletar produtos do estoque.
+- **Interface Responsiva**: Utilizando Bootstrap, a interface é adaptada para diferentes tamanhos de tela.
 
 ---
 
-## How to Run the Project
+## Como Rodar o Projeto
 
-### Prerequisites
+### Pré-requisitos
 - Python 3.x
 - Node.js
 - MySQL
+
+
 
 
