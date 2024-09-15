@@ -25,11 +25,13 @@ def create_app():
 
   CORS(app)
 
-  from .models.models import Staff, Product
+  from .models.staff_model import Staff
+  from .models.product_model import Product
+  from .models.category_model import Category
 
-  from .routes import auth, home, product
-  app.register_blueprint(home.home_bp, url_prefix='/')
+  from .routes import auth, category, product
   app.register_blueprint(auth.user_bp, url_prefix='/user')
+  app.register_blueprint(category.category_bp,)
   app.register_blueprint(product.product_bp)
 
   with app.app_context():

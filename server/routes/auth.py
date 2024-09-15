@@ -1,6 +1,6 @@
 from server.app import db
 from flask import Blueprint, request, jsonify 
-from server.models.models import Staff
+from server.models.staff_model import Staff
 from ..util.validation import check_password_sha2
 from flask_jwt_extended import create_access_token
 from datetime import timedelta

@@ -1,19 +1,11 @@
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import User from './pages/User'
-import PrivateRoute from './components/PrivateRoute'
+import { RouterProvider } from 'react-router-dom'
 import './App.css'
-import Login from './components/Login'
+import router from './router'
+
 function App() {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/login' element={<Login />}/>
-        <Route element={<PrivateRoute />}>
-          <Route path='/user' element={<User />}/>
-        </Route>  
-      </Routes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   )
 }
 
