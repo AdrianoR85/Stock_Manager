@@ -7,18 +7,18 @@ export default function ProductsLayout() {
       <h1 className="text-blue-ligth ">Stock Products</h1>
       <div className="d-flex gap-3 border-bottom mt-3">
         <Link 
-          to="/products" 
-          className={`${pathname === '/products' ? "active" : ""} text-decoration-none text-white pb-1`}>
+          to="/user/products" 
+          className={`${pathname === '/user/products' ? "active" : ""} text-decoration-none text-white pb-1`}>
             Products
         </Link>
         <Link 
-          to="/products/new" 
-          className={`${pathname === '/products/new' ? "active" : ""} text-decoration-none text-white pb-1 `}>
+          to="/user/products/new" 
+          className={`${pathname === '/user/products/new' ? "active" : ""} text-decoration-none text-white pb-1 `}>
             New Product
         </Link>
         <Link 
-          to="/products/category/new" 
-          className={`${pathname === '/products/category/new' ? "active" : ""} text-decoration-none text-white pb-1`}>
+          to="/user/products/category/new" 
+          className={`${pathname === '/user/products/category/new' ? "active" : ""} text-decoration-none text-white pb-1`}>
             New Category
         </Link>
       </div>

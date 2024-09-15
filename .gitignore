@@ -12,3 +12,5 @@ dist/
 # Logs  
 logs/  
 *.log  
+
+.vite

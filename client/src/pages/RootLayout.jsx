@@ -6,11 +6,11 @@ export default function RootLayout() {
     <div className="container">
       <header className="d-flex align-items-center pt-3 justify-content-between">
         <div className="">
-          <Link className="text-white text-decoration-none fs-4" to="/">Stock Manager</Link>
+          <Link className="text-white text-decoration-none fs-4" to="/user">Stock Manager</Link>
         </div>
         <nav className="">
-          <Link to="/" className= "btn btn-outline-light m-2">Home</Link>
-          <Link to="/products" className= "btn btn-outline-light m-2">Products</Link>
+          <Link to="/user" className= "btn btn-outline-light m-2">Home</Link>
+          <Link to="/user/products" className= "btn btn-outline-light m-2">Products</Link>
         </nav>
       </header>
      
