@@ -6,7 +6,7 @@ from flask_jwt_extended import create_access_token
 from datetime import timedelta
 
 
-user_bp = Blueprint("staff", __name__)
+user_bp = Blueprint("staff", __name__, url_prefix='/')
 
 @user_bp.route("/login", methods=["POST"])
 def login():

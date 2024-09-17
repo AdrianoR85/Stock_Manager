@@ -14,3 +14,9 @@ class Category(db.Model):
       error.append({"name_error": "name must be at least 3 characters long"})
 
     return error
+  
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "name": self.name,
+    }

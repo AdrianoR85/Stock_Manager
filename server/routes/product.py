@@ -9,13 +9,13 @@ from server.app import db
 from ..models.product_model import Product
 from ..util.validation import empty_data
 
-product_bp = Blueprint("product", __name__, url_prefix="/user/products")
+product_bp = Blueprint("product", __name__, url_prefix="/products")
 
 
 @product_bp.route("/", methods=["GET"])
 # @jwt_required()
 def get_products():
-    product_list = db.session.query(Product).all()
+    product_list = db.session.query(Product).join(Category).all()
     return jsonify([product.to_dict() for product in product_list])
 
 
@@ -26,13 +26,19 @@ def add_product():
     name = data.get("name")
     quantity = data.get("quantity")
     price = data.get("price")
-    category_name = data.get("category")
+    category_id = data.get("category")
+
+    try:
+        quantity = int(quantity)
+        price = float(price)
+    except ValueError:
+        return jsonify({"error": "Invalid quantity or price format"}), 400
 
     if empty_data(name, quantity, price):
         return jsonify({"empty_error": "All fields must be filled"})
 
-    category = db.session.query(Category).filter_by(name=category_name).first()
-
+    category = db.session.query(Category).filter_by(id=category_id).first()
+    print(category)
     try:
         product = Product(
             pname=name, quantity=quantity, price=price, category_id=category.id
@@ -69,6 +75,8 @@ def get_product_by_id(id):
             "name": product.pname,
             "quantity": product.quantity,
             "price": product.price,
+            "category_id": product.category_id,
+            "category_name": product.category.name,
         }
     )
 

@@ -21,11 +21,15 @@ html, body {
   width: 100%;
 }
 
-.text-blue-ligth {
+.text-blue-light {
   color: #80ebf3;
   
 }
 
 .active {
   border-bottom: .2rem solid #80ebf3;
+}
+
+.bg-turquoise {
+  background-color: #80ebf3;
 }

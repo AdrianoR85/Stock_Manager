@@ -1,5 +1,12 @@
-import { Link, Outlet,} from "react-router-dom"
+import { Link, Outlet, useNavigate} from "react-router-dom"
 export default function RootLayout() {
+
+  const navigate = useNavigate()
+
+  const logout = () => {
+    localStorage.removeItem('authToken');
+    navigate('/login', { replace: true });
+  }
 
   
   return (
@@ -11,6 +18,7 @@ export default function RootLayout() {
         <nav className="">
           <Link to="/user" className= "btn btn-outline-light m-2">Home</Link>
           <Link to="/user/products" className= "btn btn-outline-light m-2">Products</Link>
+          <button onClick={logout} className= "btn text-white m-2 bg-primary">Logout</button>
         </nav>
       </header>
      

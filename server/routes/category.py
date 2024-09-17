@@ -3,9 +3,15 @@ from ..app import db
 from ..models.category_model import Category
 from sqlalchemy.exc import SQLAlchemyError
 
-category_bp = Blueprint('category', __name__, url_prefix="/user")
+category_bp = Blueprint('category', __name__)
 
-@category_bp.route('/categories/register', methods=['POST'])
+@category_bp.route('/category')
+def get_category():
+  categories = db.session.query(Category).all()
+  return jsonify([category.to_dict() for category in categories])
+
+
+@category_bp.route('/new_category', methods=['POST'])
 def add_category():
   data =  request.get_json()
   name = data.get('name')

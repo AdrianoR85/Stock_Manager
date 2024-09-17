@@ -4,7 +4,6 @@ import ProductsLayout from './pages/product/ProductsLayout'
 import Products from './pages/product/Products'
 import NewProduct from './pages/product/NewProduct'
 import UpdateProduct from './pages/product/UpdateProduct'
-import NewCategory from './pages/product/NewCategory'
 import Home from  './pages/Home'
 import Login from './pages/Login'
 import PrivateRoute from './components/PrivateRoute'
@@ -29,8 +28,7 @@ const router = createBrowserRouter([
             children: [
               { index: true, element: <Products />},
               { path: 'new', element: <NewProduct />},
-              { path: ':id/update', element: <UpdateProduct />},
-              { path: 'category/new', element: <NewCategory />}
+              { path: 'update/:id', element: <UpdateProduct />}
             ]
           }
         ] 

@@ -29,9 +29,10 @@ def create_app():
   from .models.product_model import Product
   from .models.category_model import Category
 
-  from .routes import auth, category, product
-  app.register_blueprint(auth.user_bp, url_prefix='/user')
-  app.register_blueprint(category.category_bp,)
+  from .routes import auth, category, product, home
+  app.register_blueprint(home.home_bp)
+  app.register_blueprint(auth.user_bp)
+  app.register_blueprint(category.category_bp)
   app.register_blueprint(product.product_bp)
 
   with app.app_context():

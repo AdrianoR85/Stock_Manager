@@ -1,5 +1,8 @@
+import ProductForm from "../../components/ProductForm"
 export default function EditProduct() {
   return (
-    <div>EditProduct</div>
+    <section>
+      <ProductForm />
+    </section>
   )
 }
