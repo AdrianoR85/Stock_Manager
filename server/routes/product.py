@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from sqlalchemy.exc import SQLAlchemyError
 
 from ..models.category_model import Category
@@ -7,7 +7,7 @@ from ..models.category_model import Category
 from server.app import db
 
 from ..models.product_model import Product
-from ..util.validation import empty_data
+from ..utils.validation import empty_data
 
 product_bp = Blueprint("product", __name__, url_prefix="/products")
 
@@ -38,7 +38,7 @@ def add_product():
         return jsonify({"empty_error": "All fields must be filled"})
 
     category = db.session.query(Category).filter_by(id=category_id).first()
-    print(category)
+
     try:
         product = Product(
             pname=name, quantity=quantity, price=price, category_id=category.id

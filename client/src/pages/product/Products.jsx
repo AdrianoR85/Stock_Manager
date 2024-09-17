@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { StockContext } from "../../context/StockContext";
 import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";
+import NumberFormatter from '../../components/NumberFormatter';
 
 
 
@@ -17,40 +18,46 @@ export default function Products() {
         await deleteProduct(id);
         getProducts(); 
       } catch (error) {
-        toast.error('An error occurred while deleting the product');
+        if (error.response && error.response.data.error) {
+          const errors = error.response.data.error;
+          errors.forEach(error => toast.error(error.name_error));
+        }
+        toast.error(error.response.data.error)
       }
     }
   };
 
   return (
-    <section className="table-responsive mt-5">
-      <table className="table  table-striped table-hover">
-        <thead className="table-dark ">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Category</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((product) => (
-            <tr key={product.id}>
-              <th scope="row">{product.name}</th>
-              <td>{product.category}</td>
-              <td>{product.quantity}</td>
-              <td>$ {product.price}</td>
-              <td>
-                <Link to={`update/${product.id}`} className="btn btn-sm btn-primary">Edit</Link>
-                <button className="btn btn-sm btn-danger ml-2"
-                onClick={() => handleDelete(product.id)}
-                >Delete</button>
-              </td>
+    <section className=" container col-12 mt-5">
+      <div className="table-responsive" style={{maxHeight: '525px'}}>
+        <table className="table table-striped table-hover w-100">
+          <thead className="table-dark ">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Category</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.id}>
+                <th scope="row">{product.name}</th>
+                <td>{product.category}</td>
+                <td>{product.quantity}</td>
+                <td>$ <NumberFormatter value={product.price} /> </td>
+                <td>
+                  <Link to={`update/${product.id}`} className="btn btn-sm btn-primary">Edit</Link>
+                  <button className="btn btn-sm btn-danger ml-2"
+                  onClick={() => handleDelete(product.id)}
+                  >Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }

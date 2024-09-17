@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_cors import CORS
@@ -15,13 +15,11 @@ def create_app():
   app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
   app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
   
-  # configuration of JWT
-  app.config['JWT_SECRET_KEY'] = 'super-secret-key'
 
+  app.config['JWT_SECRET_KEY'] = 'admin'
 
-  # Initialize JWT and SQLAlchemy
-  jwt = JWTManager(app)
   db.init_app(app)
+  jwt = JWTManager(app)
 
   CORS(app)
 

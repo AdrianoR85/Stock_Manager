@@ -2,9 +2,9 @@ from ..app import db
 
 class Product(db.Model):
   id = db.Column(db.Integer, primary_key=True)
-  pname = db.Column(db.String(20), unique=True, nullable=False)
+  pname = db.Column(db.String(100), unique=True, nullable=False)
   quantity = db.Column(db.Integer, nullable=False, default=0)
-  price = db.Column(db.Integer, nullable=False, default=0.00)
+  price = db.Column(db.Numeric(10,2), nullable=False, default=0.00)
   category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
 
 

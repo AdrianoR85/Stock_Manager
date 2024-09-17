@@ -9,6 +9,7 @@ export function StockContextProvider({children}) {
 
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [data, setData] = useState([]);
 
   const getProducts = async () => {
     try {
@@ -22,19 +23,27 @@ export function StockContextProvider({children}) {
 
   const getProductById = async (id) => {
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/products/product/${id}`)
+      const response = await axios.get(`http://127.0.0.1:5000/products/product/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+      })
       if (response.status === 200) {
         setProducts(response.data)
       }
     }
     catch (error) {
-      toast.error('Failed to fetch product data')
+      if (error.response && error.response.data.error) {
+        const errors = error.response.data.error;
+        errors.forEach(error => toast.error(error.name_error));
+      }
+      toast.error(error.response.data.error)
     }
   }
 
   const getCategory = async() => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/category')
+      const response = await axios.get('http://127.0.0.1:5000/category', {
+        headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+      })
       if (response.status === 200) {
         setCategories(response.data)
       }
@@ -48,17 +57,40 @@ export function StockContextProvider({children}) {
     }
   }
 
+  const getData = async() => {
+    try {
+      const response = await axios.get("http://127.0.0.1:5000/data", {
+        headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+      })
+      if (response.status === 200) {
+        setData(response.data)
+      }
+    } catch (error) {
+      if (error.response && error.response.data.error) {
+        const errors = error.response.data.error;
+        errors.forEach(error => toast.error(error.name_error));
+      }
+      toast.error(error.response.data.error)
+    }
+  }
+
   useEffect(() => {
     getProducts()
     getCategory()
+    getData()
   }, [])
+
+  
 
   const addProduct = async (product) => {
    
     try {
-      await axios.post('http://127.0.0.1:5000/products/register', product)
+      await axios.post('http://127.0.0.1:5000/products/register', product, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` } 
+      })
       toast.success('Product added successfully')
       getProducts()
+      getData()
     }
     catch (error) {
       toast.error(error.response.data.error)
@@ -67,7 +99,9 @@ export function StockContextProvider({children}) {
 
   const updateProduct = async (id, updatedProduct) => {
     try {
-      await axios.put(`http://127.0.0.1:5000/products/product/${id}`, updatedProduct)
+      await axios.put(`http://127.0.0.1:5000/products/product/${id}`, updatedProduct, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+      })
       toast.success('Product updated successfully');
       getProducts();
     }
@@ -81,7 +115,9 @@ export function StockContextProvider({children}) {
 
   const deleteProduct = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:5000/products/product/${id}`)
+      await axios.delete(`http://127.0.0.1:5000/products/product/${id}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
+      })
       setProducts(products.filter(product => product.id !== id));
       toast.success('Product deleted successfully');
     }
@@ -96,6 +132,7 @@ export function StockContextProvider({children}) {
       categories,
       getProducts,
       getCategory,
+      data,
       addProduct,
       updateProduct,
       deleteProduct,
