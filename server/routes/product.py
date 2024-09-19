@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required
 from sqlalchemy.exc import SQLAlchemyError
 
 from ..models.category_model import Category
@@ -8,6 +8,7 @@ from server.app import db
 
 from ..models.product_model import Product
 from ..utils.validation import empty_data
+
 
 product_bp = Blueprint("product", __name__, url_prefix="/products")
 

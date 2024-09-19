@@ -27,10 +27,6 @@ export default function RootLayout() {
           <Outlet />
         </div>
       </main>
-
-      <footer className="text-white text-center p-2 fixed-bottom">
-        <p>Copyright &copy; 2024</p>
-      </footer>
     </div>
   )
 }

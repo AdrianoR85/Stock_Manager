@@ -15,13 +15,13 @@ def login():
   password = data.get('password')
 
   user = db.session.query(Staff).filter_by(username=username).first()
-
+  print(user)
   if user:
     stored_hash = user.password
 
     if check_password_sha2(stored_hash, password):
-      access_token = create_access_token(identity=user.id, expires_delta=timedelta(minutes=30))
-      return jsonify({"success": True, "token": access_token }), 200
+      access_token = create_access_token(identity={"username":username})
+      return jsonify({"token": access_token, "username":user.username}), 200
     else:
       return jsonify({"success": False, "message": "Invalid Password"}), 401
 

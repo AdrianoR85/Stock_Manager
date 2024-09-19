@@ -13,13 +13,17 @@ export function StockContextProvider({children}) {
 
   const getProducts = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/products')
-      if (response.status === 200) setProducts(response.data);
+      const response = await axios.get('http://127.0.0.1:5000/products');
+      
+      if (response.status === 200) {
+        setProducts(response.data);
+      }
     }
     catch (error) {
-      toast.error('Error fetching products', error.response.data.message)
+
+      toast.error(error.response?.data?.message || 'Error fetching products');
     }
-  }
+  };
 
   const getProductById = async (id) => {
     try {
@@ -104,6 +108,7 @@ export function StockContextProvider({children}) {
       })
       toast.success('Product updated successfully');
       getProducts();
+      getData()
     }
     catch (error) {
       if (error.response &&  error.response.data.error) {
@@ -119,6 +124,7 @@ export function StockContextProvider({children}) {
         headers: { Authorization: `Bearer ${localStorage.getItem('authToken')}` }
       })
       setProducts(products.filter(product => product.id !== id));
+      getData()
       toast.success('Product deleted successfully');
     }
     catch (error) {
