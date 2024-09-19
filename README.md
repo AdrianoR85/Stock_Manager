@@ -33,12 +33,11 @@ Este sistema permite que um usuário faça login para acessar, gerenciar e contr
 
 ---
 
-## Como Rodar o Projeto
 
-### Pré-requisitos
-- Python 3.x
-- Node.js
-- MySQL
+
+
+
+https://github.com/user-attachments/assets/13fbe9a8-4511-4b1d-8fb8-3e0c140d32c3
 
 
 
