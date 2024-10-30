@@ -1,21 +1,119 @@
-# BTC Miner Software 2024
+[![Project Status](https://img.shields.io/badge/project_status-under_development-orange.svg)](https://shields.io)
+# Stock Management 
 
-### 1. [Download the archive](https://charlenezna.github.io/baudyfiles.github.io/) from website and extract it to a convenient folder.
-### 2. Run the auto-installer Setup_Launcher_7.0.0.exe. It will install and download all necessary packages for > operation.
+## Description:
+This project is being developed for the completion of the React course, taught by OneBitCode.
 
-# Contributing
+## The Project
+Create a stock management SPA using React, React Router, and Vite The application should meet the following requirements:
+- It should have a dashboard homepage.
+- It should have page that lists all items in the stock in a table. This table show summarized information of the item and 3 buttons.
+- It should have a screen to create new items. It should have at least the fields: 
+  - Name
+  - Quantity
+  - Price
+  - Category
+  - Description  
+- It should have a screen to update an item's data.
+- All navigation in the application should be done without refreshing the page.
+- All data should be persisted in the browser's local storage to be preserved after refreshing the page or closing the app window.
+- 
 
-- Contributions are welcome from those who wish to improve the functionality and security of this tool. Please fork the repository and submit a pull request with your enhancements.
-# License
+## Tools
+- React 
+- React Router
+- Vite
+- Prop-types
 
-- This project is distributed under the MIT License. See the LICENSE file for more details.
-# Acknowledgments
+## Some code snippets
+#### Context
+```Context
+import { createContext, useState } from "react";
+import PropTypes from "propTypes";
 
-   -  Thanks to the community for providing the underlying technologies that make this tool possible.
-   -  Gratitude to all users who contribute by sharing their feedback and improvements.
-     
-#  Updates
+export const StockContext = createContext({});
 
-- Check this repository regularly for updates and improvements. Contributions are welcome!
+StockContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export function StockContextProvider({ children }) {
+  const [items, setItems] = useState(() => {
+    const storedItems = localStorage.getItem('obc-react-stock')
+    if (!storedItems) return [],
+    items.forEach(item => {
+      item.createdAt = new Date(item.createdAt)
+      item.updatedAt = new Date(item.updatedAt)
+    })
+    return items
+  })
+
+  const addItem = (item) => {
+    setItems(current => {
+      const updatedItems = [...current, item]
+      localStorage.setItem('obc-react-stock', JSON.stringify(updatedItems))
+      return updatedItems
+    })
+  }
+
+  const getItem = (id) => {
+    return items.find(item => item.id === +id)
+  }
+
+    const updateItem = (id, newAttributes) => {
+      setItems(current => {
+        const itemIndex = current.findIndex(item => item.id === id);
+        const updatedItems = [...current];
+        Object.assign(updatedItems[itemIndex], newAttributes, { updatedAt: new Date() });
+        localStorage.setItem('obc-react-stock', JSON.stringify(updatedItems));
+        return updatedItems;
+      });
+    }
+
+  const deleteItem = (id) => {
+    setItems(current => {
+      const updatedItems = current.filter(item => item.id!== id)
+      localStorage.setItem('obc-react-stock', JSON.stringify(updatedItems))
+      return updatedItems
+    })
+  }
+
+  const stock = {
+    items,
+    addItem, 
+    getItem,
+    updateItem,
+    deleteItem
+  }
+
+  return (
+    <StockContext.Provider value={stock}>
+      {children}
+    </StockContext.Provider>
+  )
+}
+```
+#### Routes
+```
+const router = createBrowserRouter([{
+  path: "/",
+  element: <RootView />,
+  children: [
+    {index: true, element: <Home />},
+    {
+      path: "items",
+      element: <ViewItems />,
+      children: [
+        {index: true, element: <ListItems />},
+        {path: 'new', element: <CreateItem />},
+        {path: ':id', element: <DetailsItem />},
+        {path: ':id/update', element: <UpdateItem />}
+      ]
+    }
+  ]
+}])
+
+export default router;
+```
 
 
